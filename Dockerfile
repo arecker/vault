@@ -5,4 +5,4 @@ RUN chown vault:vault /vault/config/server.hcl
 USER "vault"
 WORKDIR "/vault"
 ENV PS1 "\u@vault:\w\$ "
-CMD ["vault", "server", "-config=/vault/config/vault.hcl"]
+CMD ["vault", "server", "-config=/vault/config/server.hcl"]

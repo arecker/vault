@@ -21,12 +21,18 @@ spec:
         nfs:
           server: archive.local
           path: /mnt/scratch/farm/vault
-      securityContext:
-        runAsGroup: 1001
-        runAsUser: 1001
       containers:
       - name: vault
         image: arecker/vault:v0.2.0
+        command: ["vault", "server", "-config=/vault/config/server.hcl"]
+        env:
+        - name: SKIP_CHOWN
+          value: 'true'
+        securityContext:
+          runAsUser: 1001
+          runAsGroup: 1001
+        ports:
+        - containerPort: 8200
         volumeMounts:
         - name: data
           mountPath: /vault/file
