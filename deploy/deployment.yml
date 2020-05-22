@@ -23,7 +23,7 @@ spec:
           path: /mnt/scratch/farm/vault
       containers:
       - name: vault
-        image: arecker/vault:v0.2.0
+        image: arecker/vault:v0.3.0
         command: ["vault", "server", "-config=/vault/config/server.hcl"]
         env:
         - name: SKIP_CHOWN
