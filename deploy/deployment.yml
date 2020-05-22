@@ -26,7 +26,7 @@ spec:
         runAsUser: 1001
       containers:
       - name: vault
-        image: arecker/vault:v0.1.0
+        image: arecker/vault:v0.2.0
         volumeMounts:
         - name: data
           mountPath: /vault/file
