@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vault
+  namespace: vault
+  labels:
+    name: vault
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: vault
+  template:
+    metadata:
+      labels:
+        name: vault
+        service: vault
+    spec:
+      volumes:
+      - name: data
+        nfs:
+          server: archive.local
+          path: /mnt/scratch/farm/vault
+      securityContext:
+        runAsGroup: 1001
+        runAsUser: 1001
+      containers:
+      - name: vault
+        image: arecker/vault:v0.1.0
+        volumeMounts:
+        - name: data
+          mountPath: /vault/file
