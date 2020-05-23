@@ -23,7 +23,7 @@ spec:
           path: /mnt/scratch/farm/vault
       containers:
       - name: vault
-        image: arecker/vault:v0.3.0
+        image: arecker/vault:v0.4.0
         command: ["server"]
         securityContext:
           runAsUser: 1001
