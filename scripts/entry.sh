@@ -34,7 +34,8 @@ case "$1" in
     "terraform" )
 	wait_for_vault
 	log "running terraform"
-	# terraform init /home/vault/config.tf
+	cd /home/vault/terraform
+	terraform init
 	log "terraform finished, sleeping"
 	while true; do
 	    sleep 1
