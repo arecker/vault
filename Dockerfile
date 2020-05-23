@@ -1,7 +1,7 @@
 FROM alpine:3
 MAINTAINER Alex Recker <alex@reckerfamily.com>
 
-RUN apk --update add bash
+RUN apk --update add bash curl
 
 RUN addgroup vault && adduser --home /home/vault --uid 1001 -S -G vault vault
 
