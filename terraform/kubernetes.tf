@@ -1,5 +1,5 @@
 locals {
-  cert_path = "/secrets/cert.pem" # TODO: service account
+  cert_path = "/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
 }
 
 resource "vault_auth_backend" "kubernetes" {
