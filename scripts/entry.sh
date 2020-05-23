@@ -5,7 +5,8 @@ log() {
 }
 
 show_versions() {
-    log "$(vault version), $(terraform version)"
+    # log "$(vault version), $(terraform version)"
+    log "$(vault version)"
 }
 
 fetch_status_code() {
@@ -35,7 +36,7 @@ case "$1" in
 	wait_for_vault
 	log "running terraform"
 	cd /home/vault/terraform
-	terraform init
+	# terraform init
 	log "terraform finished, sleeping"
 	while true; do
 	    sleep 1
