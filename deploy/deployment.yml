@@ -24,7 +24,7 @@ spec:
       containers:
       - name: vault
         image: arecker/vault:v0.4.0
-        command: ["server"]
+        command: ["entry.sh", "server"]
         securityContext:
           runAsUser: 1001
           runAsGroup: 1001
