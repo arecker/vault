@@ -7,5 +7,5 @@ listener "tcp" {
 }
 
 backend "file" {
-  path = "/vault/file"
+  path = "/data"
 }

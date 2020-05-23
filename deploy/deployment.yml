@@ -24,10 +24,7 @@ spec:
       containers:
       - name: vault
         image: arecker/vault:v0.3.0
-        command: ["vault", "server", "-config=/vault/config/server.hcl"]
-        env:
-        - name: SKIP_CHOWN
-          value: 'true'
+        command: ["server"]
         securityContext:
           runAsUser: 1001
           runAsGroup: 1001
@@ -35,4 +32,4 @@ spec:
         - containerPort: 8200
         volumeMounts:
         - name: data
-          mountPath: /vault/file
+          mountPath: /data
