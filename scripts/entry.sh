@@ -8,6 +8,21 @@ show_versions() {
     log "$(vault version), $(terraform version)"
 }
 
+fetch_status_code() {
+    curl -s -L -o /dev/null -w "%{http_code}" "$1"
+}
+
+wait_for_vault() {
+    log "waiting for vault to come up..."
+    while true; do
+	local status="$(fetch_status_code $VAULT_ADDR)"
+	[[ "$status" != "200" ]] || break
+	log "vault returned $status, waiting..."
+	sleep 2
+    done
+    log "vault is up!"
+}
+
 show_versions
 log "VAULT_ADDR=\"$VAULT_ADDR\" SUBCOMMAND=\"$1\""
 
@@ -15,6 +30,15 @@ case "$1" in
     "console" )
 	log "launching interactive console"
 	bash -l
+	;;
+    "terraform" )
+	wait_for_vault
+	log "running terraform"
+	# terraform init /home/vault/config.tf
+	log "terraform finished, sleeping"
+	while true; do
+	    sleep 1
+	done
 	;;
     "server" )
 	log "launching server"

@@ -24,6 +24,9 @@ spec:
         nfs:
           server: archive.local
           path: /mnt/scratch/farm/vault
+      - name: secrets
+        secret:
+          secretName: vault
       containers:
       - name: vault
         image: arecker/vault:v0.5.0
@@ -33,3 +36,11 @@ spec:
         volumeMounts:
         - name: data
           mountPath: /data
+      - name: terraform
+        image: arecker/vault:v0.5.0
+        command: ["entry.sh", "terraform"]
+        volumeMounts:
+        - name: data
+          mountPath: /data
+        - name: secrets
+          mountPath: /secrets

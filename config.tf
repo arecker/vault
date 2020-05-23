@@ -1,5 +1,6 @@
 locals {
-  token_path = "/secrets/token"
+  token_path	    = "/secrets/root"
+  aws_creds_path    = "/secrets/aws"
 }
 
 terraform {
