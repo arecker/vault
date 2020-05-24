@@ -13,7 +13,7 @@ RUN \
 	case "$apkArch" in \
 	armhf) ARCH='arm' ;; \
 	armv7) ARCH='arm' ;; \
-	aarch64) ARCH='arm64' ;; \
+	aarch64) ARCH='arm' ;; \
 	x86_64) ARCH='amd64' ;; \
 	x86) ARCH='386' ;; \
 	*) echo >&2 "error: unsupported architecture: $apkArch"; exit 1 ;; \
@@ -21,7 +21,7 @@ RUN \
 	mkdir -p /tmp/build && \
 	cd /tmp/build && \
 	wget https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_${ARCH}.zip && \
-        wget https://releases.hashicorp.com/vault/1.4.2/vault_${VAULT_VERSION}_linux_${ARCH}.zip && \
+        wget https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_${ARCH}.zip && \
 	unzip -d /bin terraform_${TERRAFORM_VERSION}_linux_${ARCH}.zip && \
 	unzip -d /bin vault_${VAULT_VERSION}_linux_${ARCH}.zip && \
 	rm -rf /tmp/build
