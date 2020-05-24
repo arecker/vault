@@ -12,6 +12,7 @@ RUN \
 	apkArch="$(apk --print-arch)"; \
 	case "$apkArch" in \
 	armhf) ARCH='arm' ;; \
+	armv7) ARCH='arm' ;; \
 	aarch64) ARCH='arm64' ;; \
 	x86_64) ARCH='amd64' ;; \
 	x86) ARCH='386' ;; \
