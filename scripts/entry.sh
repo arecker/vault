@@ -13,7 +13,7 @@ fetch_status_code() {
     curl -s -L -o /dev/null -w "%{http_code}" "$1"
 }
 
-wait_for_vault() {
+wait_for_up() {
     log "waiting for vault to come up..."
     while true; do
 	local status="$(fetch_status_code $VAULT_ADDR)"
@@ -22,6 +22,17 @@ wait_for_vault() {
 	sleep 2
     done
     log "vault is up!"
+}
+
+wait_for_unseal() {
+    log "waiting for vault to be unsealed..."
+    while true; do
+	local status="$(fetch_status_code $VAULT_ADDR/v1/sys/health)"
+	[[ "$status" != "200" ]] || break
+	log "vault returned $status, waiting..."
+	sleep 2
+    done
+    log "vault is unsealed!"
 }
 
 show_versions
@@ -33,7 +44,8 @@ case "$1" in
 	bash -l
 	;;
     "terraform" )
-	wait_for_vault
+	wait_for_up
+	wait_for_unseal
 	log "running terraform"
 	cd /home/vault/terraform
 	terraform init
