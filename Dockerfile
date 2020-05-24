@@ -1,10 +1,12 @@
 FROM alpine:3
 MAINTAINER Alex Recker <alex@reckerfamily.com>
 
+ARG UID="1001"
+ARG GID="1001"
 ARG TERRAFORM_VERSION="0.12.25"
 ARG VAULT_VERSION="1.4.2"
 
-RUN addgroup --gid 1001 vault && adduser --home /home/vault --uid 1001 -S -G vault vault
+RUN addgroup --gid "${GID}" vault && adduser --home /home/vault --uid "${UID}" -S -G vault vault
 RUN apk --update add bash curl
 
 RUN \
