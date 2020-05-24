@@ -9,24 +9,7 @@ ARG VAULT_VERSION="1.4.2"
 RUN addgroup --gid "${GID}" vault && adduser --home /home/vault --uid "${UID}" -S -G vault vault
 RUN apk --update add bash curl
 
-RUN \
-	set -eux; \
-	apkArch="$(apk --print-arch)"; \
-	case "$apkArch" in \
-	armhf) ARCH='arm' ;; \
-	armv7) ARCH='arm' ;; \
-	aarch64) ARCH='arm' ;; \
-	x86_64) ARCH='amd64' ;; \
-	x86) ARCH='386' ;; \
-	*) echo >&2 "error: unsupported architecture: $apkArch"; exit 1 ;; \
-	esac && \
-	mkdir -p /tmp/build && \
-	cd /tmp/build && \
-	wget https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_${ARCH}.zip && \
-        wget https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_${ARCH}.zip && \
-	unzip -d /bin terraform_${TERRAFORM_VERSION}_linux_${ARCH}.zip && \
-	unzip -d /bin vault_${VAULT_VERSION}_linux_${ARCH}.zip && \
-	rm -rf /tmp/build
+COPY --from=vault:latest /bin/bault /usr/local/bin/vault
 
 ADD scripts/entry.sh /usr/local/bin/entry.sh
 ADD server.hcl /home/vault/server.hcl

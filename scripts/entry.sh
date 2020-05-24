@@ -35,7 +35,7 @@ wait_for_unseal() {
     log "vault is unsealed!"
 }
 
-show_versions
+# show_versions
 log "VAULT_ADDR=\"$VAULT_ADDR\" SUBCOMMAND=\"$1\""
 
 case "$1" in
@@ -48,7 +48,7 @@ case "$1" in
 	wait_for_unseal
 	log "running terraform"
 	cd /home/vault/terraform
-	terraform init
+	# terraform init
 	# terraform plan
 	log "terraform finished, sleeping"
 	while true; do
