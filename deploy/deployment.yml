@@ -29,7 +29,7 @@ spec:
           secretName: vault
       containers:
       - name: vault
-        image: arecker/vault:v0.9.0
+        image: arecker/vault:v0.10.0
         command: ["entry.sh", "server"]
         ports:
         - containerPort: 8200
@@ -37,7 +37,7 @@ spec:
         - name: data
           mountPath: /data
       - name: terraform
-        image: arecker/vault:v0.9.0
+        image: arecker/vault:v0.10.0
         command: ["entry.sh", "terraform"]
         volumeMounts:
         - name: data
