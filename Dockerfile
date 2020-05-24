@@ -9,7 +9,7 @@ ARG VAULT_VERSION="1.4.2"
 RUN addgroup --gid "${GID}" vault && adduser --home /home/vault --uid "${UID}" -S -G vault vault
 RUN apk --update add bash curl
 
-COPY --from=vault:latest /bin/bault /usr/local/bin/vault
+COPY --from=vault:latest /bin/vault /usr/local/bin/vault
 
 ADD scripts/entry.sh /usr/local/bin/entry.sh
 ADD server.hcl /home/vault/server.hcl
