@@ -47,9 +47,16 @@ case "$1" in
 	wait_for_unseal
 	log "running terraform"
 	cd /home/vault/terraform
-	# terraform init
-	# terraform plan
+	terraform init
+	terraform apply -auto-approve
 	log "terraform finished, sleeping"
+	while true; do
+	    sleep 1
+	done
+	;;
+    "unseal" )
+	wait_for_up
+	log "running unsealer"
 	while true; do
 	    sleep 1
 	done

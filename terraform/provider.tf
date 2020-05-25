@@ -1,4 +1,4 @@
 provider "vault" {
   address = "http://vault.local"
-  token	  = chomp(file(vars.vault_token_path))
+  token	  = chomp(file(var.vault_token_path))
 }
