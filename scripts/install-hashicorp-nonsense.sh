@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 log() {
     echo "install-hashicorp-nonsense.sh: $1" 1>&2
 }
@@ -40,6 +42,7 @@ install_vault() {
 
 case "$(print_arch)" in 
     armhf) ARCH='arm' ;;
+    armv7) ARCH='arm' ;;
     aarch64) ARCH='arm64' ;;
     x86_64) ARCH='amd64' ;;
     x86) ARCH='386' ;;
