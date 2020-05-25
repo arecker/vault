@@ -5,8 +5,7 @@ log() {
 }
 
 show_versions() {
-    # log "$(vault version), $(terraform version)"
-    log "$(vault version)"
+    log "$(vault version), $(terraform version)"
 }
 
 fetch_status_code() {
@@ -35,7 +34,7 @@ wait_for_unseal() {
     log "vault is unsealed!"
 }
 
-# show_versions
+show_versions
 log "VAULT_ADDR=\"$VAULT_ADDR\" SUBCOMMAND=\"$1\""
 
 case "$1" in

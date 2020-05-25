@@ -9,7 +9,8 @@ ARG VAULT_VERSION="1.4.2"
 RUN addgroup --gid "${GID}" vault && adduser --home /home/vault --uid "${UID}" -S -G vault vault
 RUN apk --update add bash curl
 
-COPY --from=vault:latest /bin/vault /usr/local/bin/vault
+COPY scripts/install-hashicorp-nonsense.sh /usr/local/bin/
+RUN for pos in terraform vault; do install-hashicorp-nonsense.sh "$pos"; done
 
 ADD scripts/entry.sh /usr/local/bin/entry.sh
 ADD server.hcl /home/vault/server.hcl

@@ -3,7 +3,7 @@
 set -e
 
 VERSION="$(git describe)"
-PLATFORMS="linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64"
+PLATFORMS="linux/386,linux/amd64,linux/arm/v6,linux/arm/v7"
 IMAGE_NAME="arecker/vault"
 
 log() {
