@@ -34,6 +34,26 @@ wait_for_unseal() {
     log "vault is unsealed!"
 }
 
+check_seal() {
+    local status="$(fetch_status_code $VAULT_ADDR/v1/sys/health)"
+    case "$status" in
+	"503" )
+	    log "status: $status"
+	    log "attempting to unseal vault"
+	    unseal
+	    ;;
+	* )
+	    log "status: $status"
+	    ;;
+    esac
+}
+
+unseal() {
+    for token in $(cat "/secrets/unseal"); do
+	vault operator unseal "$token"
+    done
+}
+
 show_versions
 log "VAULT_ADDR=\"$VAULT_ADDR\" SUBCOMMAND=\"$1\""
 
@@ -58,7 +78,8 @@ case "$1" in
 	wait_for_up
 	log "running unsealer"
 	while true; do
-	    sleep 1
+	    check_seal
+	    sleep 5
 	done
 	;;
     "server" )
