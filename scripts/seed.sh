@@ -12,6 +12,9 @@ aws_secret_access_key: $(pass vault/aws-secret-key)
 EOF
 }
 
+log "writing local terraform secrets"
+pass vault/root > terraform/secrets/token
+pass farm/certificate > terraform/secrets/cert.pem
 
 log "applying secrets from password store"
 cat <<EOF | kubectl apply -f -

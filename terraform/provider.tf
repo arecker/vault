@@ -1,7 +1,4 @@
-locals {
-  token_path = "/secrets/root"
-}
-
 provider "vault" {
-  token	  = chomp(file(local.token_path))
+  address = "http://vault.local"
+  token	  = chomp(file(vars.vault_token_path))
 }
