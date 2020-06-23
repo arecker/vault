@@ -26,42 +26,6 @@ resource "vault_kubernetes_auth_backend_role" "chorebot" {
   token_policies                   = ["chorebot"]
 }
 
-resource "vault_policy" "hub" {
-  name = "hub"
-
-  policy = <<EOT
-path "secret/data/hub" {
-  capabilities = ["read"]
-}
-EOT
-}
-
-resource "vault_kubernetes_auth_backend_role" "hub" {
-  backend                          = vault_auth_backend.kubernetes.path
-  role_name                        = "hub"
-  bound_service_account_names      = ["default"]
-  bound_service_account_namespaces = ["hub"]
-  token_policies                   = ["hub"]
-}
-
-resource "vault_policy" "reckerbot" {
-  name = "reckerbot"
-
-  policy = <<EOT
-path "secret/data/reckerbot" {
-  capabilities = ["read"]
-}
-EOT
-}
-
-resource "vault_kubernetes_auth_backend_role" "reckerbot" {
-  backend                          = vault_auth_backend.kubernetes.path
-  role_name                        = "reckerbot"
-  bound_service_account_names      = ["default"]
-  bound_service_account_namespaces = ["reckerbot"]
-  token_policies                   = ["reckerbot"]
-}
-
 resource "vault_policy" "wallpaper" {
   name = "wallpaper"
 
