@@ -19,13 +19,13 @@ spec:
         service: vault
     spec:
       securityContext:
-        runAsUser: 1001
-        runAsGroup: 1001
+        runAsUser: 1026
+        runAsGroup: 100
       volumes:
       - name: data
         nfs:
-          server: archive.local
-          path: /mnt/scratch/farm/vault
+          server: nas.local
+          path: /volume1/farm/vault
       - name: secrets
         secret:
           secretName: vault
