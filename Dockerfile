@@ -2,7 +2,7 @@ FROM alpine:3
 MAINTAINER Alex Recker <alex@reckerfamily.com>
 
 ARG UID="1026"
-ARG GID="100"
+ARG GID="1026"
 ARG TERRAFORM_VERSION="0.12.25"
 ARG VAULT_VERSION="1.4.2"
 
