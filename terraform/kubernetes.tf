@@ -12,7 +12,7 @@ resource "vault_policy" "chorebot" {
   name = "chorebot"
 
   policy = <<EOT
-path "secret/data/slack/reckerfamily/webhook" {
+path "secret/data/chorebot" {
   capabilities = ["read"]
 }
 EOT
