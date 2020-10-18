@@ -22,7 +22,7 @@ resource "vault_kubernetes_auth_backend_role" "chorebot" {
   backend                          = vault_auth_backend.kubernetes.path
   role_name                        = "chorebot"
   bound_service_account_names      = ["default"]
-  bound_service_account_namespaces = ["default"]
+  bound_service_account_namespaces = ["chores"]
   token_policies                   = ["chorebot"]
 }
 
