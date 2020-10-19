@@ -23,8 +23,5 @@ subjects:
   namespace: wallpaper
   kind: ServiceAccount
 - name: default
-  namespace: reckerbot
-  kind: ServiceAccount
-- name: default
-  namespace: hub
+  namespace: chores
   kind: ServiceAccount
